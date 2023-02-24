@@ -14,45 +14,43 @@
                     background: linear-gradient(to top, #580c11, #962107, #895107, #3b84e4, #125ae0, #0d4bc0, #03296b);
                 }
                 25% {
-                    background: linear-gradient(to top, #4e1c20, #b74227, #aa6d1e, #71A8EE, #3072EB, #1552C6, #0542A8);
+                    background: linear-gradient(to top, #4a2125, #b54d36, #aa6d1e, #7cabe9, #3072EB, #1552C6, #0542A8);
                 }
                 50% {
-                    background: linear-gradient(to top, #58151A, #BC2909, #BA6D09, #71A8EE, #3072EB, #1552C6, #0542A8);
+                    background: linear-gradient(to top, rgb(221, 193, 196), #ddc4bf, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8);
                 }
                 75% {
-                    background: linear-gradient(to top, #040308, #AD4A28, #DD723C, #151655, #4076a5, #3E5879, #072558);
+                    background: linear-gradient(to top, #220c0e, #6b2616, #59390f, #2c425e, #193d80, #1552C6, #0542A8);
                 }
                 100% {
-                    background: linear-gradient(to top, #040308, black, black, black, black, black, black, black);                    
+                    background: linear-gradient(to top, #100607, #190905, #1e1305, #121a25, #0b1b38, #05122c, #010c1e);
                 }
             }
         </style>
         <script>
-             var findClosest = function (x, arr) {
-                var indexArr = arr.map(function(k) { return Math.abs(k - x) })
-                var min = Math.min.apply(Math, indexArr)
+             const findClosest = function (x, arr) {
+                const indexArr = arr.map(function(k) { return Math.abs(k - x) })
+                const min = Math.min.apply(Math, indexArr)
                 return arr[indexArr.indexOf(min)]
             }
             document.addEventListener("DOMContentLoaded", function() {
-                var now = new Date().getHours();
-                var percent = 24-now/100;
-                var keyframeRule = document.styleSheets[0].cssRules[1];
-                var percents = [0, 25, 50, 75, 100];
-                var closest = percents.indexOf(findClosest(percent, percents));
-                var newOrder = [];
-                for (var x = 0; x < percents.length; x++) {
+                const now = new Date().getHours();
+                const percent = 24-now/100;
+                const keyframeRule = document.styleSheets[0].cssRules[1];
+                const percents = [0, 25, 50, 75, 100];
+                const closest = percents.indexOf(findClosest(percent, percents));
+                const newOrder = percents.map((percent, x) => {
                     if (closest + x >= percents.length) {
-                        newOrder.push(closest + x - percents.length);
+                        return closest + x - percents.length;
                     } else {
-                        newOrder.push(closest + x);
+                        return closest + x;
                     }
-                    
-                }
-                keyframeRule[0].style.background = keyframeRule[newOrder[0]].style.background
-                keyframeRule[1].style.background = keyframeRule[newOrder[1]].style.background
-                keyframeRule[2].style.background = keyframeRule[newOrder[2]].style.background
-                keyframeRule[3].style.background = keyframeRule[newOrder[3]].style.background
-                keyframeRule[4].style.background = keyframeRule[newOrder[4]].style.background
+                });
+                keyframeRule.cssRules[0].style.background = keyframeRule.cssRules[newOrder[0]].style.background
+                keyframeRule.cssRules[1].style.background = keyframeRule.cssRules[newOrder[1]].style.background
+                keyframeRule.cssRules[2].style.background = keyframeRule.cssRules[newOrder[2]].style.background
+                keyframeRule.cssRules[3].style.background = keyframeRule.cssRules[newOrder[3]].style.background
+                keyframeRule.cssRules[4].style.background = keyframeRule.cssRules[newOrder[4]].style.background
             });
         </script>
     </body>
