@@ -2,4 +2,4 @@
 
 Uses hour of the day to set a background linear gradient.
 
-[Demo](https://matthoffner.github.io/skyview/)
+[https://skymatt.netlify.app/](https://skymatt.netlify.app/)
