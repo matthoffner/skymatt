@@ -51,6 +51,15 @@
                 keyframeRule.cssRules[2].style.background = keyframeRule.cssRules[newOrder[2]].style.background;
                 keyframeRule.cssRules[3].style.background = keyframeRule.cssRules[newOrder[3]].style.background;
                 keyframeRule.cssRules[4].style.background = keyframeRule.cssRules[newOrder[4]].style.background;
+                let isSafari = window.navigator.userAgent.indexOf("Safari") > -1;
+                let isChrome = window.navigator.userAgent.indexOf("Chrome") > -1;
+                if (isSafari && !isChrome) {
+                    keyframeRule.cssRules[0].style['background-image'] = keyframeRule.cssRules[newOrder[0]].style.background;
+                    keyframeRule.cssRules[1].style['background-image'] = keyframeRule.cssRules[newOrder[1]].style.background;
+                    keyframeRule.cssRules[2].style['background-image'] = keyframeRule.cssRules[newOrder[2]].style.background;
+                    keyframeRule.cssRules[3].style['background-image'] = keyframeRule.cssRules[newOrder[3]].style.background;
+                    keyframeRule.cssRules[4].style['background-image'] = keyframeRule.cssRules[newOrder[4]].style.background;
+                }
             });
         </script>
     </body>
