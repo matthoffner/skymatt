@@ -35,7 +35,7 @@
             }
             document.addEventListener("DOMContentLoaded", function() {
                 const now = new Date().getHours();
-                const percent = 24-now/100;
+                const percent = now/24*100;
                 const percents = [0, 25, 50, 75, 100];
                 const closest = percents.indexOf(findClosest(percent, percents));
                 const newOrder = percents.map((percent, x) => {
@@ -46,11 +46,11 @@
                     }
                 });
                 var keyframeRule = document.styleSheets[0].cssRules[1];
-                keyframeRule.cssRules[0].style.background = keyframeRule.cssRules[newOrder[0]].style.background
-                keyframeRule.cssRules[1].style.background = keyframeRule.cssRules[newOrder[1]].style.background
-                keyframeRule.cssRules[2].style.background = keyframeRule.cssRules[newOrder[2]].style.background
-                keyframeRule.cssRules[3].style.background = keyframeRule.cssRules[newOrder[3]].style.background
-                keyframeRule.cssRules[4].style.background = keyframeRule.cssRules[newOrder[4]].style.background
+                keyframeRule.cssRules[0].style.background = keyframeRule.cssRules[newOrder[0]].style.background;
+                keyframeRule.cssRules[1].style.background = keyframeRule.cssRules[newOrder[1]].style.background;
+                keyframeRule.cssRules[2].style.background = keyframeRule.cssRules[newOrder[2]].style.background;
+                keyframeRule.cssRules[3].style.background = keyframeRule.cssRules[newOrder[3]].style.background;
+                keyframeRule.cssRules[4].style.background = keyframeRule.cssRules[newOrder[4]].style.background;
             });
         </script>
     </body>
