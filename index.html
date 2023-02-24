@@ -1,0 +1,59 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <style>
+            :root {
+                text-align: center;
+                animation-name: backgroundColorPalette;
+                animation-duration: 86400s;
+                animation-iteration-count: infinite;  
+            }
+            @keyframes backgroundColorPalette {
+                0% {
+                    background: linear-gradient(to top, #580c11, #962107, #895107, #3b84e4, #125ae0, #0d4bc0, #03296b);
+                }
+                25% {
+                    background: linear-gradient(to top, #4e1c20, #b74227, #aa6d1e, #71A8EE, #3072EB, #1552C6, #0542A8);
+                }
+                50% {
+                    background: linear-gradient(to top, #58151A, #BC2909, #BA6D09, #71A8EE, #3072EB, #1552C6, #0542A8);
+                }
+                75% {
+                    background: linear-gradient(to top, #040308, #AD4A28, #DD723C, #151655, #4076a5, #3E5879, #072558);
+                }
+                100% {
+                    background: linear-gradient(to top, #040308, black, black, black, black, black, black, black);                    
+                }
+            }
+        </style>
+        <script>
+             var findClosest = function (x, arr) {
+                var indexArr = arr.map(function(k) { return Math.abs(k - x) })
+                var min = Math.min.apply(Math, indexArr)
+                return arr[indexArr.indexOf(min)]
+            }
+            document.addEventListener("DOMContentLoaded", function() {
+                var now = new Date().getHours();
+                var percent = 24-now/100;
+                var keyframeRule = document.styleSheets[0].cssRules[1];
+                var percents = [0, 25, 50, 75, 100];
+                var closest = percents.indexOf(findClosest(percent, percents));
+                var newOrder = [];
+                for (var x = 0; x < percents.length; x++) {
+                    if (closest + x >= percents.length) {
+                        newOrder.push(closest + x - percents.length);
+                    } else {
+                        newOrder.push(closest + x);
+                    }
+                    
+                }
+                keyframeRule[0].style.background = keyframeRule[newOrder[0]].style.background
+                keyframeRule[1].style.background = keyframeRule[newOrder[1]].style.background
+                keyframeRule[2].style.background = keyframeRule[newOrder[2]].style.background
+                keyframeRule[3].style.background = keyframeRule[newOrder[3]].style.background
+                keyframeRule[4].style.background = keyframeRule[newOrder[4]].style.background
+            });
+        </script>
+    </body>
+</html>
