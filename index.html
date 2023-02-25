@@ -11,23 +11,54 @@
             }
             @keyframes backgroundColorPalette {
                 0% {
-                    background: linear-gradient(to top, #580c11, #962107, #895107, #3b84e4, #125ae0, #0d4bc0, #03296b);
+                    background: linear-gradient(to top, rgb(69, 65, 65), rgb(76,rgb(122, 91, 91)61), black, black, black, black, black);
                 }
-                25% {
-                    background: linear-gradient(to top, #4a2125, #b54d36, #aa6d1e, #7cabe9, #3072EB, #1552C6, #0542A8);
+                7% {
+                    background: linear-gradient(to top, #2a0608, #701a07, #895107, #1e4b85, #082a6a, #082d71, #03296b);
                 }
-                50% {
-                    background: linear-gradient(to top, rgb(221, 193, 196), #ddc4bf, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8);
+                14% {
+                    background: linear-gradient(to top, #502023, #962107, #895107, #3b84e4, #125ae0, #0d4bc0, #03296b);
                 }
-                75% {
-                    background: linear-gradient(to top, #220c0e, #6b2616, #59390f, #2c425e, #193d80, #1552C6, #0542A8);
+                21% {
+                    background: linear-gradient(to top, #74799a, #ddc7c2, #aa6d1e, #7cabe9, #3072EB, #1552C6, #0542A8);
+                }
+                28% {
+                    background: linear-gradient(to top, blue, blue, #4080a8, #4a6d9b, #3072EB, #1552C6, #0542A8);
+                }
+                35% {
+                    background: linear-gradient(to top, #369fcc, #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da);
+                }
+                42% {
+                    background: linear-gradient(to top, rgb(160, 124, 210), #ddc4bf, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8);
+                }
+                49% {
+                    background: linear-gradient(to top, rgb(143, 76, 202), #ddc4bf, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8);
+                }
+                56% {
+                    background: linear-gradient(to top, rgb(129, 80, 221), #7c809d, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8);
+                }
+                63% {
+                    background: linear-gradient(to top, rgb(79, 86, 182), #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8);
+                }
+                70% {
+                    background: linear-gradient(to top, #28264c, #8a574b, #59390f, #365172, #193d80, #1552C6, #0542A8);
+                }
+                77% {
+                    background: linear-gradient(to top, #44181c, #4d1a0f, #40290a, #23354c, #193d80, #1552C6, #0542A8);
+                }
+                84% {
+                    background: linear-gradient(to top, #180a0a, #280e08, #352209, #1f2f43, #193d80, #0a2a65, #01286b);
+                }
+                90% {
+                    background: linear-gradient(to top, #0d0505, #3a140b, #442b0b, #192536, #0b1931, #1552C6, #021534);
                 }
                 100% {
-                    background: linear-gradient(to top, #100607, #190905, #1e1305, #121a25, #0b1b38, #05122c, #010c1e);
+                    background: linear-gradient(to top, black, black, black, black, black, black, black);
                 }
             }
         </style>
         <script>
+            const percents = [0, 7, 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, 90, 100];
              const findClosest = function (x, arr) {
                 const indexArr = arr.map(function(k) { return Math.abs(k - x) })
                 const min = Math.min.apply(Math, indexArr)
@@ -36,7 +67,6 @@
             document.addEventListener("DOMContentLoaded", function() {
                 const now = new Date().getHours();
                 const percent = now/24*100;
-                const percents = [0, 25, 50, 75, 100];
                 const closest = percents.indexOf(findClosest(percent, percents));
                 const newOrder = percents.map((percent, x) => {
                     if (closest + x >= percents.length) {
@@ -46,20 +76,13 @@
                     }
                 });
                 var keyframeRule = document.styleSheets[0].cssRules[1];
-                keyframeRule.cssRules[0].style.background = keyframeRule.cssRules[newOrder[0]].style.background;
-                keyframeRule.cssRules[1].style.background = keyframeRule.cssRules[newOrder[1]].style.background;
-                keyframeRule.cssRules[2].style.background = keyframeRule.cssRules[newOrder[2]].style.background;
-                keyframeRule.cssRules[3].style.background = keyframeRule.cssRules[newOrder[3]].style.background;
-                keyframeRule.cssRules[4].style.background = keyframeRule.cssRules[newOrder[4]].style.background;
-                let isSafari = window.navigator.userAgent.indexOf("Safari") > -1;
-                let isChrome = window.navigator.userAgent.indexOf("Chrome") > -1;
-                if (isSafari && !isChrome) {
-                    keyframeRule.cssRules[0].style['background-image'] = keyframeRule.cssRules[newOrder[0]].style.background;
-                    keyframeRule.cssRules[1].style['background-image'] = keyframeRule.cssRules[newOrder[1]].style.background;
-                    keyframeRule.cssRules[2].style['background-image'] = keyframeRule.cssRules[newOrder[2]].style.background;
-                    keyframeRule.cssRules[3].style['background-image'] = keyframeRule.cssRules[newOrder[3]].style.background;
-                    keyframeRule.cssRules[4].style['background-image'] = keyframeRule.cssRules[newOrder[4]].style.background;
-                }
+                let isSafari = window.navigator.userAgent.indexOf("Safari") > -1 && !window.navigator.userAgent.indexOf("Chrome") > -1;
+                Object.values(keyframeRule.cssRules).forEach((rule, y) => {
+                    rule.style.background = keyframeRule.cssRules[newOrder[y]].style.background;
+                    if (isSafari) {
+                        rule.style['background-image'] = keyframeRule.cssRules[newOrder[y]].style.background;
+                    }
+                })
             });
         </script>
     </body>
