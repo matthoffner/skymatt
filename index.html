@@ -2,64 +2,36 @@
     <head>
     </head>
     <body>
-        <style>
-            :root {
-                text-align: center;
-                animation-name: backgroundColorPalette;
-                animation-duration: 86400s;
-                animation-iteration-count: infinite;  
-            }
-            @keyframes backgroundColorPalette {
-                0% {
-                    background: linear-gradient(to top, rgb(69, 65, 65), rgb(76,rgb(122, 91, 91)61), black, black, black, black, black);
-                }
-                7% {
-                    background: linear-gradient(to top, #2a0608, #701a07, #895107, #1e4b85, #082a6a, #082d71, #03296b);
-                }
-                14% {
-                    background: linear-gradient(to top, #502023, #962107, #895107, #3b84e4, #125ae0, #0d4bc0, #03296b);
-                }
-                21% {
-                    background: linear-gradient(to top, #74799a, #ddc7c2, #aa6d1e, #7cabe9, #3072EB, #1552C6, #0542A8);
-                }
-                28% {
-                    background: linear-gradient(to top, blue, blue, #4080a8, #4a6d9b, #3072EB, #1552C6, #0542A8);
-                }
-                35% {
-                    background: linear-gradient(to top, #369fcc, #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da);
-                }
-                42% {
-                    background: linear-gradient(to top, rgb(160, 124, 210), #ddc4bf, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8);
-                }
-                49% {
-                    background: linear-gradient(to top, rgb(143, 76, 202), #ddc4bf, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8);
-                }
-                56% {
-                    background: linear-gradient(to top, rgb(129, 80, 221), #7c809d, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8);
-                }
-                63% {
-                    background: linear-gradient(to top, rgb(79, 86, 182), #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8);
-                }
-                70% {
-                    background: linear-gradient(to top, #28264c, #8a574b, #59390f, #365172, #193d80, #1552C6, #0542A8);
-                }
-                77% {
-                    background: linear-gradient(to top, #44181c, #4d1a0f, #40290a, #23354c, #193d80, #1552C6, #0542A8);
-                }
-                84% {
-                    background: linear-gradient(to top, #180a0a, #280e08, #352209, #1f2f43, #193d80, #0a2a65, #01286b);
-                }
-                90% {
-                    background: linear-gradient(to top, #0d0505, #3a140b, #442b0b, #192536, #0b1931, #1552C6, #021534);
-                }
-                100% {
-                    background: linear-gradient(to top, black, black, black, black, black, black, black);
-                }
-            }
-        </style>
         <script>
-            const percents = [0, 7, 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, 90, 100];
-             const findClosest = function (x, arr) {
+            const nightTime = 'black, black, black, black, black, black, black';
+            const colorClock = [
+                nightTime,
+                nightTime,
+                nightTime,
+            /* sunrise */    '#44181c, #4d1a0f, #40290a, #23354c, #193d80, #1552C6, #0542A8', 
+            /* sunrise     */    '#2a0608, #701a07, #895107, #1e4b85, #082a6a, #082d71, #03296b', 
+            /* sunrise */    '#2a0608, #701a07, #895107, #1e4b85, #082a6a, #082d71, #03296b', 
+            /* am */    'rgb(79, 86, 182), #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
+            /* am */    'rgb(79, 86, 182), #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
+            /* am */    'rgb(79, 86, 182), #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
+            /* am */    'rgb(79, 86, 182), #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
+            /* noon */    '#369fcc, #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da', 
+            /* noon */    '#369fcc, #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da', 
+            /* noon */    '#369fcc, #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da', 
+            /* noon */    '#369fcc, #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da', 
+            /* dinner */    'rgb(79, 86, 180), #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
+            /* dinner */    'rgb(79, 86, 180), #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
+            /* dinner */    'rgb(79, 86, 180), #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
+            /* sunset */    '#2a0608, #701a07, #895107, #1e4b85, #082a6a, #082d71, #03296b', 
+            /* sunset */    '#2a0608, #701a07, #895107, #1e4b85, #082a6a, #082d71, #03296b', 
+            /* sunset */    '#44181c, #4d1a0f, #40290a, #23354c, #193d80, #1552C6, #0542A8', 
+            /* sunset */    '#180a0a, #280e08, #352209, #1f2f43, #193d80, #0a2a65, #01286b', 
+                nightTime,
+                nightTime,
+                nightTime
+            ];
+            const percents = [0, 10, 15, 17, 20, 25, 30, 32, 35, 40, 45, 50, 52, 55, 60, 62, 65, 70, 72, 75, 80, 85, 95, 100];
+            const findClosest = function (x, arr) {
                 const indexArr = arr.map(function(k) { return Math.abs(k - x) })
                 const min = Math.min.apply(Math, indexArr)
                 return arr[indexArr.indexOf(min)]
@@ -75,14 +47,14 @@
                         return closest + x;
                     }
                 });
-                var keyframeRule = document.styleSheets[0].cssRules[1];
-                let isSafari = window.navigator.userAgent.indexOf("Safari") > -1 && !window.navigator.userAgent.indexOf("Chrome") > -1;
-                Object.values(keyframeRule.cssRules).forEach((rule, y) => {
-                    rule.style.background = keyframeRule.cssRules[newOrder[y]].style.background;
-                    if (isSafari) {
-                        rule.style['background-image'] = keyframeRule.cssRules[newOrder[y]].style.background;
-                    }
-                })
+                const backgroundColorPalette = colorClock.map((color, i) => {
+                    return `${`${percents[newOrder[i]]}`}% { background: linear-gradient(to top, ${color}); }\n`
+                });
+                const style = document.createElement('style');
+                const animationName = `@keyframes backgroundColorPalette { ${backgroundColorPalette.join('')} }`;
+                style.innerHTML = `${animationName} :root { text-align: center; animation-name: backgroundColorPalette; animation-duration: 86400s; animation-iteration-count: infinite; }`;
+                var ref = document.querySelector('script');
+                ref.parentNode.insertBefore(style, ref);
             });
         </script>
     </body>
