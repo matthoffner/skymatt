@@ -7,21 +7,21 @@
             const colorClock = [
                 nightTime,
                 nightTime,
-                nightTime,
+            /* sunrise */    'black, #280e08, #352209, #1f2f43, #193d80, #0a2a65, #01286b', 
             /* sunrise */    '#44181c, #4d1a0f, #40290a, #23354c, #193d80, #1552C6, #0542A8', 
             /* sunrise     */    '#2a0608, #701a07, #895107, #1e4b85, #082a6a, #082d71, #03296b', 
-            /* sunrise */    '#2a0608, #701a07, #895107, #1e4b85, #082a6a, #082d71, #03296b', 
+            /* sunrise */    '#2a0608, #3b6c85, #895107, #1e4b85, #082a6a, #082d71, #03296b', 
             /* am */    'rgb(79, 86, 182), #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
             /* am */    'rgb(79, 86, 182), #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
             /* am */    'rgb(79, 86, 182), #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
             /* am */    'rgb(79, 86, 182), #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
-            /* noon */    '#369fcc, #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da', 
-            /* noon */    '#369fcc, #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da', 
-            /* noon */    '#369fcc, #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da', 
-            /* noon */    '#369fcc, #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da', 
-            /* dinner */    'rgb(79, 86, 180), #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
-            /* dinner */    'rgb(79, 86, 180), #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
-            /* dinner */    'rgb(79, 86, 180), #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
+            /* lunch */    'rgb(79, 86, 180), #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
+            /* lunch */    'rgb(79, 86, 180), #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
+            /* lunch */    'rgb(79, 86, 180), #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
+            /* afternoon */    '#369fcc, #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da', 
+            /* afternoon */    '#369fcc, #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da', 
+            /* afternoon */    '#369fcc, #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da', 
+            /* afternoon */    '#369fcc, #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da', 
             /* sunset */    '#2a0608, #701a07, #895107, #1e4b85, #082a6a, #082d71, #03296b', 
             /* sunset */    '#2a0608, #701a07, #895107, #1e4b85, #082a6a, #082d71, #03296b', 
             /* sunset */    '#44181c, #4d1a0f, #40290a, #23354c, #193d80, #1552C6, #0542A8', 
@@ -48,7 +48,7 @@
                     }
                 });
                 const backgroundColorPalette = colorClock.map((color, i) => {
-                    return `${`${percents[newOrder[i]]}`}% { background: linear-gradient(to top, ${color}); }\n`
+                    return `${`${percents[newOrder[i]]}`}% { background: linear-gradient(to bottom, ${color}); }\n`
                 });
                 const style = document.createElement('style');
                 const animationName = `@keyframes backgroundColorPalette { ${backgroundColorPalette.join('')} }`;
