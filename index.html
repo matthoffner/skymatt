@@ -30,7 +30,7 @@
                 nightTime,
                 nightTime
             ];
-            const percents = [0, 10, 15, 17, 20, 25, 30, 32, 35, 40, 45, 50, 52, 55, 60, 62, 65, 70, 72, 75, 80, 85, 95, 100];
+            const percents = new Array(24).fill().map((d,i)=>i%24*100/24);
             const findClosest = function (x, arr) {
                 const indexArr = arr.map(function(k) { return Math.abs(k - x) })
                 const min = Math.min.apply(Math, indexArr)
