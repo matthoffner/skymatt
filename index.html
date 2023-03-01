@@ -1,5 +1,6 @@
 <html>
     <head>
+        <meta id="theme" name="theme-color"></meta>
     </head>
     <body>
         <script>
@@ -8,57 +9,85 @@
                 nightTime,
                 nightTime,
                 nightTime,
-            /* sunrise */    'black, #280e08, #352209, #1f2f43, #193d80, #0a2a65, #01286b', 
-            /* sunrise */    '#44181c, #4d1a0f, #40290a, #23354c, #193d80, #1552C6, #0542A8', 
-            /* sunrise     */'#2a0608, #701a07, #895107, #1e4b85, #082a6a, #082d71, #03296b', 
-            /* sunrise */    '#2a0608, #3b6c85, #895107, #1e4b85, #082a6a, #082d71, #03296b', 
-                /* am */    '#2a0608, #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
-                /* am */    '#2a0608, #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
-                /* am */    '#369fcc, #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
-            /* lunch */    '#369fcc, #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
-            /* lunch */    '#369fcc, #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
-            /* lunch */    '#369fcc, #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
-            /* lunch */    'rgb(79, 86, 180), #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
-            /* afternoon */    'rgb(79, 86, 180), #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da', 
-            /* afternoon */    'rgb(79, 86, 180), #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da', 
-            /* afternoon */    'rgb(79, 86, 180), #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da', 
-            /* sunset */    '#180a0a, #701a07, #895107, #1e4b85, #082a6a, #082d71, #03296b', 
-            /* sunset */    '#180a0a, #701a07, #895107, #1e4b85, #082a6a, #082d71, #03296b', 
-            /* sunset */    '#180a0a, #4d1a0f, #40290a, #23354c, #193d80, #1552C6, #0542A8', 
-            /* sunset */    '#180a0a, #280e08, #352209, #1f2f43, #193d80, #0a2a65, #01286b', 
+            'black, #280e08, #352209, #1f2f43, #193d80, #0a2a65, #01286b', 
+            '#44181c, #4d1a0f, #40290a, #23354c, #193d80, #1552C6, #0542A8', 
+            '#2a0608, #701a07, #895107, #1e4b85, #082a6a, #082d71, #03296b', 
+            '#2a0608, #3b6c85, #895107, #1e4b85, #082a6a, #082d71, #03296b', 
+            '#2a0608, #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
+            '#2a0608, #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
+            '#369fcc, #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
+            '#369fcc, #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
+            '#369fcc, #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
+            '#369fcc, #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
+            'rgb(79, 86, 180), #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
+            'rgb(79, 86, 180), #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da', 
+            'rgb(79, 86, 180), #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da', 
+            'rgb(79, 86, 180), #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da', 
+            '#180a0a, #701a07, #895107, #1e4b85, #082a6a, #082d71, #03296b', 
+            '#180a0a, #701a07, #895107, #1e4b85, #082a6a, #082d71, #03296b', 
+            '#180a0a, #4d1a0f, #40290a, #23354c, #193d80, #1552C6, #0542A8', 
+            '#180a0a, #280e08, #352209, #1f2f43, #193d80, #0a2a65, #01286b', 
                 nightTime,
                 nightTime,
                 nightTime
             ];
+            const arrayRange = (start, stop, step) =>
+                Array.from(
+                { length: (stop - start) / step + 1 },
+                (value, index) => Math.round(start + index * step)
+            );
+            const findClosest = function (x, arr) {
+                const indexArr = arr.map(function(k) { return Math.abs(k - x) })
+                const min = Math.min.apply(Math, indexArr)
+                return arr[indexArr.indexOf(min)]
+            }
             const getTimeColorOrder = (cssDuration, duration) => {
-                const findClosest = function (x, arr) {
-                    const indexArr = arr.map(function(k) { return Math.abs(k - x) })
-                    const min = Math.min.apply(Math, indexArr)
-                    return arr[indexArr.indexOf(min)]
-                }
                 const now = new Date().getHours();
                 const closest = cssDuration.indexOf(findClosest(Math.round(now/duration * 100), cssDuration));
                 const cssOrder = cssDuration.map((percent, x) => closest + x >= cssDuration.length ? closest + x - cssDuration.length : closest + x);
                 return cssOrder;
             }
-            
+            const runAtKeyframe = (DOMElement, keyframe, callback) => {
+                const animationDuration = window.getComputedStyle(DOMElement).animationDuration;
+                let animationKeyframe
+                if (animationDuration.replace(/[0-9]/g, '') === "s") {
+                    animationKeyframe = parseInt(animationDuration) * keyframe * 1000
+                } else {
+                    animationKeyframe = parseInt(animationDuration) * keyframe
+                }
+                const doStuff = (e) => {
+                    setTimeout(() => {
+                        callback();
+                    }, animationKeyframe)
+                }
+                DOMElement.addEventListener("animationstart", doStuff); 
+                DOMElement.addEventListener("animationiteration", () => {
+                    clearTimeout(animationKeyframe);
+                    doStuff();
+                }); 
+            }
             document.addEventListener("DOMContentLoaded", function() {
-                console.log(colorClock.length);
-                const arrayRange = (start, stop, step) =>
-                    Array.from(
-                    { length: (stop - start) / step + 1 },
-                    (value, index) => Math.round(start + index * step)
-                );
                 const cssDuration = arrayRange(0, 100, 100/(colorClock.length - 1));
                 const colorClockOrder = getTimeColorOrder(cssDuration, colorClock.length);
                 const backgroundColorPalette = colorClockOrder.map((color, i) => 
-                    `${`${cssDuration[i]}`}% { background: linear-gradient(to bottom, ${colorClock[color]}); }\n`);
+                    `${`${cssDuration[i]}`}% {  background: linear-gradient(to bottom, ${colorClock[color]}); }\n`);
                 const style = document.createElement('style');
                 const animationName = `@keyframes backgroundColorPalette { ${backgroundColorPalette.join('')} }`;
-                style.innerHTML = `${animationName} :root { background-color: black; animation-name: backgroundColorPalette; 
-                    animation-duration: 84600s; animation-iteration-count: infinite; }`;
+                style.innerHTML = `${animationName} body { background-color: black; animation: backgroundColorPalette; animation-name: backgroundColorPalette, sliding; 
+                    animation-duration: 86400s; animation-iteration-count: infinite; animation-timing-function: ease-in-out; }`;
                 var ref = document.querySelector('script');
                 ref.parentNode.insertBefore(style, ref);
+                const meta = document.createElement('meta');
+                cssDuration.map(duration => {
+                    runAtKeyframe(document.body, duration / 100, () => {
+                        var meta = document.getElementById('theme');
+                        cssDuration.map((duration, i) => ({ [duration]: colorClock[i] })).filter((x, i) => {
+                            if (parseInt(Object.keys(x)[0], 10) === duration) {
+                                meta.setAttribute('content', Object.values(x)[0].split(',')[0]);
+                            }
+                        });
+                    });
+                });
             });
         </script>
     </body>
