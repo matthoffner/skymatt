@@ -1,6 +1,7 @@
-<html>
+<html lang="en">
     <head>
-        <meta id="theme" name="theme-color"></meta>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
     </head>
     <body>
         <script>
@@ -19,10 +20,10 @@
             '#369fcc, #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
             '#369fcc, #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
             '#369fcc, #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
-            'rgb(79, 86, 180), #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
-            'rgb(79, 86, 180), #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da', 
-            'rgb(79, 86, 180), #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da', 
-            'rgb(79, 86, 180), #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da', 
+            '#4F55B4, #3b6c85, #a5c1d3, #4a6d9b, #3072EB, #1552C6, #0542A8', 
+            '#4F55B4, #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da', 
+            '#4F55B4, #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da', 
+            '#4F55B4, #c0aaa4, #c1b7ab, #5783be, #86a5df, #7895cb, #a0b5da', 
             '#180a0a, #701a07, #895107, #1e4b85, #082a6a, #082d71, #03296b', 
             '#180a0a, #701a07, #895107, #1e4b85, #082a6a, #082d71, #03296b', 
             '#180a0a, #4d1a0f, #40290a, #23354c, #193d80, #1552C6, #0542A8', 
@@ -73,21 +74,13 @@
                     `${`${cssDuration[i]}`}% {  background: linear-gradient(to bottom, ${colorClock[color]}); }\n`);
                 const style = document.createElement('style');
                 const animationName = `@keyframes backgroundColorPalette { ${backgroundColorPalette.join('')} }`;
-                style.innerHTML = `${animationName} body { background-color: black; animation: backgroundColorPalette; animation-name: backgroundColorPalette, sliding; 
-                    animation-duration: 86400s; animation-iteration-count: infinite; animation-timing-function: ease-in-out; }`;
-                var ref = document.querySelector('script');
+                const blurAnimation = `@keyframes blurAnimation { 0% { backdrop-filter: blur(0px); }
+                    25% { backdrop-filter: blur(500px); } 50% { backdrop-filter: blur(1000px); }
+                    75% { backdrop-filter: blur(500px); } 100% { backdrop-filter: blur(0px); } }`;
+                style.innerHTML = `${animationName} ${blurAnimation} body { background-color: black; animation: backgroundColorPalette 86400s, blurAnimation 3600s; sliding; 
+                    animation-iteration-count: infinite; animation-timing-function: ease-in-out; }`;
+                var ref = document.querySelector('body');
                 ref.parentNode.insertBefore(style, ref);
-                const meta = document.createElement('meta');
-                cssDuration.map(duration => {
-                    runAtKeyframe(document.body, duration / 100, () => {
-                        var meta = document.getElementById('theme');
-                        cssDuration.map((duration, i) => ({ [duration]: colorClock[i] })).filter((x, i) => {
-                            if (parseInt(Object.keys(x)[0], 10) === duration) {
-                                meta.setAttribute('content', Object.values(x)[0].split(',')[0]);
-                            }
-                        });
-                    });
-                });
             });
         </script>
     </body>
