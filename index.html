@@ -82,8 +82,19 @@
                     50% { -webkit-backdrop-filter: blur(1000px); backdrop-filter: blur(1000px); }
                     65% { -webkit-backdrop-filter: blur(500px); backdrop-filter: blur(500px); }
                     85% { -webkit-backdrop-filter: blur(250px); backdrop-filter: blur(250px); }
-                    100% { -webkit-backdrop-filter: blur(0px); backdrop-filter: blur(0px); } }`;
-                style.innerHTML = `${animationName} ${blurAnimation} body { background-color: black; animation: backgroundColorPalette 86400s, blurAnimation 3600s; sliding; 
+                    100% { -webkit-backdrop-filter: blur(0px); backdrop-filter: blur(0px); } }
+                    @keyframes breathe {
+                        0% {
+                            opacity: 1;
+                        }
+                        50% {
+                            opacity: .5;
+                        }
+                        100% {
+                            opacity 1;
+                        }
+                    }`;
+                style.innerHTML = `${animationName} ${blurAnimation} body { background-color: black; animation: backgroundColorPalette 84600s, blurAnimation 3600s, breathe 4s;
                     animation-iteration-count: infinite; animation-timing-function: ease-in-out; }`;
                 var ref = document.querySelector('body');
                 ref.parentNode.insertBefore(style, ref);
