@@ -100,7 +100,7 @@
                             opacity: 0;
                         }
                     }`;
-                style.innerHTML = `${animationName} ${blurAnimation} body { background-color: black; animation: backgroundColorPalette 84600s, blurAnimation 3600s, breathe 8s;
+                style.innerHTML = `${animationName} ${blurAnimation} body { background-color: black; animation: backgroundColorPalette 84600s, blurAnimation 24s, breathe 8s;
                     animation-iteration-count: infinite; animation-timing-function: ease-in-out; }`;
                 var ref = document.querySelector('body');
                 ref.parentNode.insertBefore(style, ref);
@@ -116,5 +116,10 @@
                 */
             });
         </script>
+        <style>
+            body {
+                margin: 0px;
+            }
+        </style>
     </body>
 </html>
