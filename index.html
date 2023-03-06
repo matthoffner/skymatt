@@ -1,5 +1,6 @@
 <html lang="en">
     <head>
+        <meta id="theme" name="theme-color"></meta>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
     </head>
@@ -74,13 +75,22 @@
                     `${`${cssDuration[i]}`}% {  background: linear-gradient(to bottom, ${colorClock[color]}); }\n`);
                 const style = document.createElement('style');
                 const animationName = `@keyframes backgroundColorPalette { ${backgroundColorPalette.join('')} }`;
-                const blurAnimation = `@keyframes blurAnimation { 0% { backdrop-filter: blur(0px); }
-                    25% { backdrop-filter: blur(500px); } 50% { backdrop-filter: blur(1000px); }
-                    75% { backdrop-filter: blur(500px); } 100% { backdrop-filter: blur(0px); } }`;
+                const blurAnimation = `@keyframes blurAnimation { 0% { -webkit-backdrop-filter: blur(0px); backdrop-filter: blur(0px); }
+                    20% { -webkit-backdrop-filter: blur(1000px); backdrop-filter: blur(1000px); } 40% { -webkit-backdrop-filter: blur(500px); backdrop-filter: blur(500px); }
+                    60% { -webkit-backdrop-filter: blur(1000px); backdrop-filter: blur(1000px); } 80% { -webkit-backdrop-filter: blur(500px); backdrop-filter: blur(500px);
+                    100% { -webkit-backdrop-filter: blur(0px); backdrop-filter: blur(0px); } } }`;
                 style.innerHTML = `${animationName} ${blurAnimation} body { background-color: black; animation: backgroundColorPalette 86400s, blurAnimation 3600s; sliding; 
                     animation-iteration-count: infinite; animation-timing-function: ease-in-out; }`;
                 var ref = document.querySelector('body');
                 ref.parentNode.insertBefore(style, ref);
+                cssDuration.map(duration => {
+                    runAtKeyframe(document.body, duration / 100, () => {
+                        var meta = document.getElementById('theme');
+                        // console.log(colorClockOrder[duration], colorClockOrder.map(color => ([duration] = colorClock[color])));
+                        // not quite right
+                        meta.setAttribute('content', colorClock[colorClockOrder[duration]].split(',')[0]);
+                    });
+                });
             });
         </script>
     </body>
