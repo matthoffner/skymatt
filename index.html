@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width" />
     </head>
     <body>
+        <div id="circles"></div>
         <script>
             const nightTime = 'black, black, black, black, black, black, black';
             const colorClock = [
@@ -82,28 +83,30 @@
                     50% { -webkit-backdrop-filter: blur(1000px); backdrop-filter: blur(1000px); }
                     65% { -webkit-backdrop-filter: blur(500px); backdrop-filter: blur(500px); }
                     85% { -webkit-backdrop-filter: blur(250px); backdrop-filter: blur(250px); }
-                    100% { -webkit-backdrop-filter: blur(0px); backdrop-filter: blur(0px); } }
-                    @keyframes breathe {
-                        0% {
-                            opacity: 0;
-                        }
-                        25% {
-                            opacity: .5
-                        }
-                        50% {
-                            opacity: 1;
-                        }
-                        75% {
-                            opacity: .5;
-                        }
-                        100% {
-                            opacity: 0;
-                        }
-                    }`;
-                style.innerHTML = `${animationName} ${blurAnimation} body { background-color: black; animation: backgroundColorPalette 84600s, blurAnimation 24s, breathe 8s;
+                    100% { -webkit-backdrop-filter: blur(0px); backdrop-filter: blur(0px); } }`;
+                const breatheAnimation = `@keyframes breathe
+                  { 0% { opacity: 0; }
+                    25% { opacity: .5; }
+                    50% { opacity: 1; }
+                    75% { opacity: .5; }
+                    100% { opacity: 0; } }`;
+                style.innerHTML = `${animationName} ${blurAnimation} ${breatheAnimation} body { background-color: black; animation: backgroundColorPalette 84600s, blurAnimation 24s, breathe 8s;
                     animation-iteration-count: infinite; animation-timing-function: ease-in-out; }`;
                 var ref = document.querySelector('body');
                 ref.parentNode.insertBefore(style, ref);
+                document.body.addEventListener('click', async () => {
+                    if ('wakeLock' in navigator && 'request' in navigator.wakeLock) {
+                        await navigator.wakeLock.request("screen");
+                    }                    
+                    document.getElementById('circles').innerHTML = document.getElementById('circles').innerHTML + `
+                    <div class="circles">
+                        <div class="circle1"></div>
+                        <div class="circle2"></div>
+                        <div class="circle3"></div>
+                    </div>
+                    `
+                })
+
                 /*
                 cssDuration.map(duration => {
                     runAtKeyframe(document.body, duration / 100, () => {
@@ -119,6 +122,58 @@
         <style>
             body {
                 margin: 0px;
+            }
+            @keyframes growAndFade {
+                0% {
+                    opacity: .1;
+                    transform: scale(0);
+                }
+                100% {
+                    opacity: 0;
+                    transform: scale(1);
+                }
+            };
+            .circles {
+                height: 90vmin;
+                position: relative;
+                width: 90vmin;  
+                animation: growAndFade 12s infinite ease-out;
+                background-color: dodgerblue;
+                border-radius: 50%;
+                height: 100%;
+                opacity: 0;
+                position: absolute;
+                width: 100%;
+            }
+            .circle1 {
+                animation-delay: 3s;    
+                animation: growAndFade 12s infinite ease-out;
+                background-color: dodgerblue;
+                border-radius: 50%;
+                height: 100%;
+                opacity: 0;
+                position: absolute;
+                width: 100%;
+            }
+            .circle2 {
+                animation-delay: 6s; 
+                animation: growAndFade 12s infinite ease-out;
+                background-color: dodgerblue;
+                border-radius: 50%;
+                height: 100%;
+                opacity: 0;
+                position: absolute;
+                width: 100%;
+            }
+            .circle3 {
+                animation-delay: 9s;
+                animation: growAndFade 12s infinite ease-out;
+                background-color: dodgerblue;
+                border-radius: 50%;
+                height: 100%;
+                opacity: 0;
+                position: absolute;
+                width: 100%;
             }
         </style>
     </body>
